@@ -1,14 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Three</title>
-    <script type="module" crossorigin src="./assets/index-BMwQ_EKZ.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-DuZ2N1l6.css">
+    <title>Solar System</title>
+    <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/MotionPathPlugin.min.js"></script>
+    <!-- Плашка информации о планете -->
+    <aside id="planet-panel" class="planet-panel">
+      <h2 id="planet-name" class="planet-panel__name"></h2>
+
+      <div class="planet-carousel">
+        <div class="planet-carousel__viewport">
+          <div class="planet-carousel__track" id="carousel-track"></div>
+        </div>
+
+        <nav class="planet-carousel__nav" aria-label="Навигация по секциям">
+          <button
+            type="button"
+            class="planet-carousel__btn"
+            id="carousel-prev"
+            aria-label="Предыдущая секция"
+          >
+            ‹
+          </button>
+          <div class="planet-carousel__dots" id="carousel-dots"></div>
+          <button
+            type="button"
+            class="planet-carousel__btn"
+            id="carousel-next"
+            aria-label="Следующая секция"
+          >
+            ›
+          </button>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- Дата/время симуляции (реальное время пользователя) -->
+    <div id="simulation-clock-wrap" class="simulation-clock-wrap">
+      <time id="simulation-clock" class="simulation-clock" datetime=""></time>
+    </div>
+
+    <!-- Меню управления скоростью симуляции -->
+    <nav id="speed-menu" class="speed-menu" aria-label="Скорость симуляции">
+      <button type="button" class="speed-menu__btn" data-speed-mode="realtime">
+        Реальное время
+      </button>
+      <button
+        type="button"
+        class="speed-menu__btn is-active"
+        data-speed-mode="x1000"
+      >
+        ×1000
+      </button>
+      <button type="button" class="speed-menu__btn" data-speed-mode="x100000">
+        ×100 000
+      </button>
+    </nav>
+
+    <script src="/script.js" type="module"></script>
   </body>
 </html>
