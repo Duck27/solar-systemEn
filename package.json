@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",
-    "build:pages": "vite build --base /solar-system/",
+    "build:pages": "vite build --base ./",
     "preview": "vite preview"
   },
   "dependencies": {
