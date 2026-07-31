@@ -3,15 +3,11 @@ import { Line2 } from "three/examples/jsm/lines/Line2.js";
 import { LineGeometry } from "three/examples/jsm/lines/LineGeometry.js";
 import { LineMaterial } from "three/examples/jsm/lines/LineMaterial.js";
 import { planetsData } from "../planetsData.js";
-
-const textureLoader = new THREE.TextureLoader();
+import { getCachedTexture } from "../assets/textureCache.js";
 
 const ORBIT_SEGMENTS = 256;
 const orbitLineMaterials = [];
 
-// Line2 рисует линию с постоянной толщиной в экранных пикселях — орбита не
-// исчезает при остром наклоне и на дальних дистанциях (в отличие от TorusGeometry
-// и плоских RingGeometry / LineLoop).
 function createOrbitRing(radius, color = 0x4488cc, opacity = 0.6) {
   const positions = [];
   for (let i = 0; i <= ORBIT_SEGMENTS; i++) {
@@ -47,24 +43,30 @@ export function updateOrbitRingResolution(width, height) {
   }
 }
 
+function createBodyMaterial(data) {
+  const texture = data.mesh.texture ? getCachedTexture(data.mesh.texture) : null;
+  const fallback = data.mesh.fallbackColor ?? 0x888888;
+
+  if (data.mesh.isSun) {
+    return new THREE.MeshBasicMaterial({
+      map: texture,
+      color: fallback,
+    });
+  }
+
+  return new THREE.MeshStandardMaterial({
+    map: texture,
+    color: fallback,
+  });
+}
+
 export function createPlanet(name, scene) {
   const data = planetsData[name];
   if (!data.mesh) return;
 
-  // Чем крупнее планета — тем более детальная сфера
   const segments = data.mesh.size > 1 ? 64 : 32;
   const geometry = new THREE.SphereGeometry(data.mesh.size, segments, segments);
-
-  const texture = data.mesh.texture
-    ? textureLoader.load(data.mesh.texture)
-    : null;
-  if (texture) texture.colorSpace = THREE.SRGBColorSpace;
-
-  const material = data.mesh.isSun
-    ? new THREE.MeshBasicMaterial({ map: texture })
-    : new THREE.MeshStandardMaterial({ map: texture });
-
-  const planetMesh = new THREE.Mesh(geometry, material);
+  const planetMesh = new THREE.Mesh(geometry, createBodyMaterial(data));
 
   const orbitPivot = new THREE.Object3D();
   scene.add(orbitPivot);
@@ -79,11 +81,8 @@ export function createPlanet(name, scene) {
 
   tiltPivot.add(planetMesh);
 
-  // Облачный слой (если задан в данных планеты)
   if (data.mesh.clouds) {
-    const cloudTex = textureLoader.load(data.mesh.clouds);
-    cloudTex.colorSpace = THREE.SRGBColorSpace;
-
+    const cloudTex = getCachedTexture(data.mesh.clouds);
     const cloudGeo = new THREE.SphereGeometry(
       data.mesh.size + 0.05,
       segments,
@@ -91,7 +90,7 @@ export function createPlanet(name, scene) {
     );
     const cloudMat = new THREE.MeshStandardMaterial({
       map: cloudTex,
-      alphaMap: cloudTex, // чёрные области = прозрачные, белые = облака
+      alphaMap: cloudTex,
       transparent: true,
       depthWrite: false,
       opacity: 0.9,
@@ -112,26 +111,25 @@ export function createPlanet(name, scene) {
   if (data.satellites) {
     for (const satelliteName in data.satellites) {
       const satellite = data.satellites[satelliteName];
-      const segments = satellite.mesh.size > 1 ? 64 : 32;
+      const satSegments = satellite.mesh.size > 1 ? 64 : 32;
       const geo = new THREE.SphereGeometry(
         satellite.mesh.size,
-        segments,
-        segments,
+        satSegments,
+        satSegments,
       );
 
       const tex = satellite.mesh.texture
-        ? textureLoader.load(satellite.mesh.texture)
+        ? getCachedTexture(satellite.mesh.texture)
         : null;
-      if (tex) tex.colorSpace = THREE.SRGBColorSpace;
-
-      const mat = new THREE.MeshStandardMaterial({ map: tex });
+      const mat = new THREE.MeshStandardMaterial({
+        map: tex,
+        color: satellite.mesh.fallbackColor ?? 0x888888,
+      });
       const satelliteMesh = new THREE.Mesh(geo, mat);
 
-      // Пивот орбиты спутника вокруг планеты
       const satPivot = new THREE.Object3D();
       tiltPivot.add(satPivot);
 
-      // Кольцо орбиты спутника (видно вокруг планеты)
       satellite.orbit.line = createOrbitRing(
         satellite.orbit.radius,
         0x336688,
@@ -160,12 +158,10 @@ export function updatePlanet(data, dt) {
   data.orbit.pivot.rotation.y = data.orbit.angle;
   data.mesh.body.rotation.y += data.mesh.rotationSpeed * dt;
 
-  // Облака вращаются чуть быстрее поверхности
   if (data.mesh.cloudBody) {
     data.mesh.cloudBody.rotation.y += data.mesh.rotationSpeed * 1.15 * dt;
   }
 
-  // Обновляем спутники, если они есть
   if (data.satellites) {
     for (const key in data.satellites) {
       const sat = data.satellites[key];

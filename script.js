@@ -47,6 +47,21 @@ import {
   initSimulationClock,
   updateSimulationClock,
 } from "./scripts/ui/simulationClock.js";
+import {
+  preloadPlanetTextures,
+  applyAnisotropy,
+} from "./scripts/assets/textureCache.js";
+
+async function bootstrap() {
+  const loadingEl = document.getElementById("loading-screen");
+
+  await preloadPlanetTextures(planetsData, (loaded, total) => {
+    if (loadingEl) {
+      loadingEl.textContent = `Загрузка текстур… ${loaded}/${total}`;
+    }
+  });
+
+  if (loadingEl) loadingEl.classList.add("is-hidden");
 
 // --- Инициализация ---
 const scene = new THREE.Scene();
@@ -59,6 +74,7 @@ const camera = new THREE.PerspectiveCamera(
 camera.position.set(60, 20, 40);
 
 const renderer = initRenderer();
+applyAnisotropy(renderer);
 const { composer, bloomPass } = initComposer(renderer, scene, camera);
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
@@ -178,3 +194,6 @@ window.addEventListener("resize", () => {
   composer.setSize(window.innerWidth, window.innerHeight);
   updateOrbitRingResolution(window.innerWidth, window.innerHeight);
 });
+}
+
+bootstrap();

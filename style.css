@@ -4,6 +4,36 @@
   box-sizing: border-box;
 }
 
+body {
+  background: #020408;
+}
+
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  font-size: 1rem;
+  color: #a8c8ff;
+  letter-spacing: 0.04em;
+
+  background: #020408;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.loading-screen.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 /* ── Базовая плашка ── */
 .planet-panel {
   --panel-name: #a8c8ff;
