@@ -2,7 +2,6 @@ import { formatForHorizons } from "../time/simulationTime.js";
 import { planetsData } from "../planetsData.js";
 import { setOrbitAngle } from "../world/planets.js";
 
-/** ID тел в NASA JPL Horizons */
 const HORIZONS_IDS = {
   mercury: "199",
   venus: "299",
@@ -20,7 +19,6 @@ const PLANET_KEYS = [
   "jupiter", "saturn", "uranus", "neptune",
 ];
 
-/** Средние долготы на эпоху J2000.0 (градусы) — запасной расчёт */
 const J2000_LONGITUDE = {
   mercury: 252.25,
   venus: 181.98,
@@ -33,7 +31,6 @@ const J2000_LONGITUDE = {
   moon: 218.32,
 };
 
-/** Среднее суточное движение (град/сут) */
 const DAILY_MOTION = {
   mercury: 4.0923,
   venus: 1.6021,
@@ -92,7 +89,7 @@ async function fetchHeliocentricLongitude(bodyId, date) {
   if (data.error) throw new Error(data.error);
 
   const angle = parseVectors(data.result);
-  if (angle == null) throw new Error("Не удалось разобрать ответ NASA");
+  if (angle == null) throw new Error("Failed to parse NASA Horizons response");
   return angle;
 }
 
@@ -120,18 +117,16 @@ async function fetchGeocentricLongitude(bodyId, centerId, date) {
   if (data.error) throw new Error(data.error);
 
   const angle = parseVectors(data.result);
-  if (angle == null) throw new Error("Не удалось разобрать ответ NASA");
+  if (angle == null) throw new Error("Failed to parse NASA Horizons response");
   return angle;
 }
 
-/** Приближённая долгота без API (на основе средних элементов орбиты) */
 export function fallbackLongitude(key, date) {
   const days = (date.getTime() - J2000_EPOCH) / 86_400_000;
   const deg = J2000_LONGITUDE[key] + DAILY_MOTION[key] * days;
   return ((deg % 360) + 360) % 360 * (Math.PI / 180);
 }
 
-/** Запрашивает у NASA актуальные позиции планет на указанную дату */
 export async function fetchPlanetPositions(date) {
   const positions = {};
   let usedFallback = false;
@@ -161,7 +156,6 @@ export async function fetchPlanetPositions(date) {
   return { positions, usedFallback };
 }
 
-/** Мгновенно выставляет приближённые позиции (без сети) */
 export function applyFallbackPositions(date) {
   const positions = {};
   for (const key of PLANET_KEYS) {
@@ -171,7 +165,6 @@ export function applyFallbackPositions(date) {
   applyPositionsToPlanets(positions);
 }
 
-/** Применяет углы орбит к уже созданным планетам */
 export function applyPositionsToPlanets(positions) {
   for (const key of PLANET_KEYS) {
     if (positions[key] != null && planetsData[key]) {

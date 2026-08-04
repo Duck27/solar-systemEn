@@ -7,7 +7,6 @@ export let selectedPlanet = null;
 
 const _v = new THREE.Vector3();
 
-// Фиксированная позиция обзора пояса астероидов (на пределе радиуса обзора)
 const beltCamPos = new THREE.Vector3(40, 45, 55)
   .normalize()
   .multiplyScalar(overviewMaxDistance);
@@ -63,7 +62,6 @@ export function moveToBelt(camera, controls) {
   const startCamPos = camera.position.clone();
   const startTarget = controls.target.clone();
 
-  // Немного замедляем время — видно движение астероидов, но не слишком быстро
   gsap.to(settings, { speedMultiplier: beltViewSpeedMultiplier, duration: 2, ease: "power2.inOut" });
 
   const tween = { p: 0 };
@@ -81,7 +79,6 @@ export function moveToBelt(camera, controls) {
       controls.target.copy(beltTarget);
       camera.lookAt(controls.target);
       controls.maxDistance = overviewMaxDistance;
-      // isFocused = true, чтобы клик по пустому месту возвращал в обзор
       settings.isFocused = true;
       controls.enabled = true;
       requestAnimationFrame(() => { isTweening = false; });

@@ -56,7 +56,6 @@ async function loadOne(url) {
   return texture;
 }
 
-/** Параллельная предзагрузка; Солнце — первым */
 export async function preloadPlanetTextures(planetsData, onProgress) {
   const urls = collectTextureUrls(planetsData);
   const sunUrl = planetsData.sun?.mesh?.texture;

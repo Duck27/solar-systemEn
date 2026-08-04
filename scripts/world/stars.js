@@ -1,7 +1,6 @@
 import * as THREE from "three";
 import { starVertexShader, starFragmentShader } from "../shaders.js";
 
-// Вспомогательная функция для генерации текстуры звезды (Canvas)
 export function createStarTexture() {
   const canvas = document.createElement("canvas");
   canvas.width = 32;
@@ -21,7 +20,6 @@ export function createStarTexture() {
   return new THREE.CanvasTexture(canvas);
 }
 
-// Функция создания одного слоя звезд
 export function createStars(count, distance, size, texture) {
   const geometry = new THREE.BufferGeometry();
   const vertices = [];
@@ -63,7 +61,6 @@ export function createStars(count, distance, size, texture) {
   return new THREE.Points(geometry, material);
 }
 
-// ГЛАВНАЯ ФУНКЦИЯ: инициализирует звезды и добавляет их на сцену
 export function initStars(scene) {
   const starTexture = createStarTexture();
 
@@ -72,6 +69,5 @@ export function initStars(scene) {
 
   scene.add(layer1, layer2);
 
-  // Возвращаем слои массивом, чтобы анимировать их в script.js
   return [layer1, layer2];
 }

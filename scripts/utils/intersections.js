@@ -42,7 +42,6 @@ function castRay(event, camera) {
   raycaster.setFromCamera(mouse, camera);
 }
 
-/** Наведение на планету/спутник в режиме обзора */
 export function checkHover(event, camera) {
   if (isUiTarget(event.target)) return false;
 
@@ -55,7 +54,6 @@ export function checkHover(event, camera) {
   return intersects.length > 0;
 }
 
-// extraTargets: [{ mesh, onHit }] — проверяются до планет и спутников
 export function checkIntersection(
   event,
   camera,

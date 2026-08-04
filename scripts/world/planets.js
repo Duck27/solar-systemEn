@@ -43,6 +43,53 @@ export function updateOrbitRingResolution(width, height) {
   }
 }
 
+function createProceduralRingTexture() {
+  const canvas = document.createElement("canvas");
+  canvas.width = 512;
+  canvas.height = 128;
+  const ctx = canvas.getContext("2d");
+
+  for (let y = 0; y < canvas.height; y++) {
+    const t = y / canvas.height;
+    let alpha = 0.55 + Math.sin(t * 120) * 0.12 + Math.sin(t * 37) * 0.08;
+
+    if (t > 0.5 && t < 0.58) alpha *= 0.08;
+    if (Math.sin(t * 200) > 0.92) alpha *= 0.35;
+
+    if (t < 0.06) alpha *= t / 0.06;
+    if (t > 0.94) alpha *= (1 - t) / 0.06;
+
+    const lightness = 58 + t * 22 + Math.sin(t * 90) * 8;
+    ctx.fillStyle = `hsla(38, 42%, ${lightness}%, ${Math.min(1, Math.max(0, alpha))})`;
+    ctx.fillRect(0, y, canvas.width, 1);
+  }
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.ClampToEdgeWrapping;
+  return texture;
+}
+
+function createPlanetRings(planetSize, config) {
+  const inner = planetSize * config.innerScale;
+  const outer = planetSize * config.outerScale;
+  const geometry = new THREE.RingGeometry(inner, outer, 128);
+
+  const material = new THREE.MeshBasicMaterial({
+    map: createProceduralRingTexture(),
+    transparent: true,
+    side: THREE.DoubleSide,
+    depthWrite: false,
+    opacity: config.opacity ?? 0.93,
+  });
+
+  const rings = new THREE.Mesh(geometry, material);
+  rings.rotation.x = -Math.PI / 2;
+  rings.renderOrder = 2;
+  return rings;
+}
+
 function createBodyMaterial(data) {
   const texture = data.mesh.texture ? getCachedTexture(data.mesh.texture) : null;
   const fallback = data.mesh.fallbackColor ?? 0x888888;
@@ -60,6 +107,31 @@ function createBodyMaterial(data) {
   });
 }
 
+function applyAxialTilt(object, tiltDeg, tiltLonDeg = 0) {
+  const tilt = THREE.MathUtils.degToRad(tiltDeg);
+  const lon = THREE.MathUtils.degToRad(tiltLonDeg);
+  const dirX = Math.sin(lon);
+  const dirZ = Math.cos(lon);
+  const axis = new THREE.Vector3(dirZ, 0, -dirX).normalize();
+  object.quaternion.setFromAxisAngle(axis, tilt);
+}
+
+function applyHeliocentricTransform(data) {
+  const angle = data.orbit.angle;
+  const radius = data.orbit.radius;
+  data.orbit.pivot.position.set(
+    Math.cos(angle) * radius,
+    0,
+    Math.sin(angle) * radius,
+  );
+}
+
+function applySatelliteTransform(data) {
+  if (!data.orbit.pivot) return;
+  data.orbit.pivot.position.set(0, 0, 0);
+  data.orbit.pivot.rotation.y = data.orbit.angle;
+}
+
 export function createPlanet(name, scene) {
   const data = planetsData[name];
   if (!data.mesh) return;
@@ -71,15 +143,19 @@ export function createPlanet(name, scene) {
   const orbitPivot = new THREE.Object3D();
   scene.add(orbitPivot);
 
-  const tiltPivot = new THREE.Object3D();
-  tiltPivot.position.set(data.orbit.radius, 0, 0);
-  orbitPivot.add(tiltPivot);
+  const spinPivot = new THREE.Object3D();
+  orbitPivot.add(spinPivot);
 
   if (data.mesh.tiltDeg != null) {
-    tiltPivot.rotation.z = -THREE.MathUtils.degToRad(data.mesh.tiltDeg);
+    applyAxialTilt(spinPivot, data.mesh.tiltDeg, data.mesh.tiltLonDeg ?? 0);
   }
 
-  tiltPivot.add(planetMesh);
+  spinPivot.add(planetMesh);
+
+  if (data.mesh.rings) {
+    const rings = createPlanetRings(data.mesh.size, data.mesh.rings);
+    planetMesh.add(rings);
+  }
 
   if (data.mesh.clouds) {
     const cloudTex = getCachedTexture(data.mesh.clouds);
@@ -96,7 +172,7 @@ export function createPlanet(name, scene) {
       opacity: 0.9,
     });
     const cloudMesh = new THREE.Mesh(cloudGeo, cloudMat);
-    tiltPivot.add(cloudMesh);
+    spinPivot.add(cloudMesh);
     data.mesh.cloudBody = cloudMesh;
   }
 
@@ -107,6 +183,7 @@ export function createPlanet(name, scene) {
 
   data.mesh.body = planetMesh;
   data.orbit.pivot = orbitPivot;
+  setOrbitAngle(data, data.orbit.angle);
 
   if (data.satellites) {
     for (const satelliteName in data.satellites) {
@@ -128,34 +205,39 @@ export function createPlanet(name, scene) {
       const satelliteMesh = new THREE.Mesh(geo, mat);
 
       const satPivot = new THREE.Object3D();
-      tiltPivot.add(satPivot);
+      spinPivot.add(satPivot);
 
       satellite.orbit.line = createOrbitRing(
         satellite.orbit.radius,
         0x336688,
         0.45,
       );
-      satPivot.add(satellite.orbit.line);
+      spinPivot.add(satellite.orbit.line);
 
       satelliteMesh.position.set(satellite.orbit.radius, 0, 0);
       satPivot.add(satelliteMesh);
 
       satellite.mesh.body = satelliteMesh;
       satellite.orbit.pivot = satPivot;
+      setOrbitAngle(satellite, satellite.orbit.angle);
     }
   }
 }
 
 export function setOrbitAngle(data, angleRadians) {
   data.orbit.angle = angleRadians;
-  if (data.orbit.pivot) {
-    data.orbit.pivot.rotation.y = angleRadians;
+  if (data.orbit.heliocentric) {
+    applyHeliocentricTransform(data);
+  } else {
+    applySatelliteTransform(data);
   }
 }
 
 export function updatePlanet(data, dt) {
   data.orbit.angle += data.orbit.speed * dt;
-  data.orbit.pivot.rotation.y = data.orbit.angle;
+  if (data.orbit.heliocentric) {
+    applyHeliocentricTransform(data);
+  }
   data.mesh.body.rotation.y += data.mesh.rotationSpeed * dt;
 
   if (data.mesh.cloudBody) {
@@ -166,7 +248,7 @@ export function updatePlanet(data, dt) {
     for (const key in data.satellites) {
       const sat = data.satellites[key];
       sat.orbit.angle += sat.orbit.speed * dt;
-      sat.orbit.pivot.rotation.y = sat.orbit.angle;
+      applySatelliteTransform(sat);
       sat.mesh.body.rotation.y += sat.mesh.rotationSpeed * dt;
     }
   }

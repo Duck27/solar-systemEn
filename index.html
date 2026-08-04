@@ -9,7 +9,6 @@
   <body>
     <div id="loading-screen" class="loading-screen">Загрузка…</div>
 
-    <!-- Плашка информации о планете -->
     <aside id="planet-panel" class="planet-panel">
       <h2 id="planet-name" class="planet-panel__name"></h2>
 
@@ -40,12 +39,10 @@
       </div>
     </aside>
 
-    <!-- Дата/время симуляции (реальное время пользователя) -->
     <div id="simulation-clock-wrap" class="simulation-clock-wrap">
       <time id="simulation-clock" class="simulation-clock" datetime=""></time>
     </div>
 
-    <!-- Меню управления скоростью симуляции -->
     <nav id="speed-menu" class="speed-menu" aria-label="Скорость симуляции">
       <button type="button" class="speed-menu__btn" data-speed-mode="realtime">
         Реальное время
@@ -59,6 +56,30 @@
       </button>
       <button type="button" class="speed-menu__btn" data-speed-mode="x100000">
         ×100 000
+      </button>
+
+      <div class="speed-menu__divider" aria-hidden="true"></div>
+
+      <div class="speed-menu__custom">
+        <span class="speed-menu__prefix" aria-hidden="true">×</span>
+        <input
+          type="number"
+          id="speed-custom"
+          class="speed-menu__input"
+          inputmode="decimal"
+          step="any"
+          aria-label="Произвольная скорость"
+          title="Отрицательное значение — движение назад во времени"
+        />
+      </div>
+      <button
+        type="button"
+        id="speed-reverse"
+        class="speed-menu__reverse"
+        aria-label="Обратить направление времени"
+        title="Обратить направление"
+      >
+        ↺
       </button>
     </nav>
 
