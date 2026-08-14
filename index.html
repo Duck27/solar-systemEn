@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <div id="loading-screen" class="loading-screen">Загрузка…</div>
+    <div id="loading-screen" class="loading-screen">Loading…</div>
 
     <aside id="planet-panel" class="planet-panel">
       <h2 id="planet-name" class="planet-panel__name"></h2>
@@ -17,12 +17,12 @@
           <div class="planet-carousel__track" id="carousel-track"></div>
         </div>
 
-        <nav class="planet-carousel__nav" aria-label="Навигация по секциям">
+        <nav class="planet-carousel__nav" aria-label="Section navigation">
           <button
             type="button"
             class="planet-carousel__btn"
             id="carousel-prev"
-            aria-label="Предыдущая секция"
+            aria-label="Previous section"
           >
             ‹
           </button>
@@ -31,7 +31,7 @@
             type="button"
             class="planet-carousel__btn"
             id="carousel-next"
-            aria-label="Следующая секция"
+            aria-label="Next section"
           >
             ›
           </button>
@@ -43,9 +43,9 @@
       <time id="simulation-clock" class="simulation-clock" datetime=""></time>
     </div>
 
-    <nav id="speed-menu" class="speed-menu" aria-label="Скорость симуляции">
+    <nav id="speed-menu" class="speed-menu" aria-label="Simulation speed">
       <button type="button" class="speed-menu__btn" data-speed-mode="realtime">
-        Реальное время
+        Real time
       </button>
       <button
         type="button"
@@ -68,16 +68,16 @@
           class="speed-menu__input"
           inputmode="decimal"
           step="any"
-          aria-label="Произвольная скорость"
-          title="Отрицательное значение — движение назад во времени"
+          aria-label="Custom speed"
+          title="A negative value moves time backward"
         />
       </div>
       <button
         type="button"
         id="speed-reverse"
         class="speed-menu__reverse"
-        aria-label="Обратить направление времени"
-        title="Обратить направление"
+        aria-label="Reverse time direction"
+        title="Reverse direction"
       >
         ↺
       </button>

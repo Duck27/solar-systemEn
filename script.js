@@ -55,7 +55,7 @@ async function bootstrap() {
 
   await preloadPlanetTextures(planetsData, (loaded, total) => {
     if (loadingEl) {
-      loadingEl.textContent = `Загрузка текстур… ${loaded}/${total}`;
+      loadingEl.textContent = `Loading textures… ${loaded}/${total}`;
     }
   });
 

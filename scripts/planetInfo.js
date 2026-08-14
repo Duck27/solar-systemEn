@@ -1,192 +1,192 @@
 // add \n\n to text to add new lines
 export const planetInfo = {
   sun: {
-    label: "Солнце",
+    label: "Sun",
     sections: [
       {
-        text: "Солнце почти целиком состоит из водорода и гелия. Это первые и самые простые химические элементы, возникшие в первые минуты после Большого взрыва. Они служат основным строительным материалом для всех звезд в космосе.",
+        text: "The Sun is almost entirely hydrogen and helium — the first and simplest chemical elements, formed in the first minutes after the Big Bang. They are the primary building blocks of every star in the cosmos.",
       },
       {
-        text: "Все сложные элементы вокруг нас — от железа в крови до золота и кремния в электронике — когда-то сформировались внутри древних звезд. Солнце содержит в себе вещество, переработанное прошлыми поколениями умерших звезд.",
+        text: "All the complex elements around us — from the iron in our blood to the gold and silicon in electronics — were once forged inside ancient stars. The Sun contains matter recycled by generations of dead stars.",
       },
       {
-        text: "Фотон света, рожденный в ядерном центре Солнца, пробивается сквозь его плотные внутренние слои от 10 000 до 170 000 лет. Однако, вырвавшись на поверхность, он преодолевает путь до Земли всего за 8 минут.",
+        text: "A photon born in the Sun's nuclear core takes between 10,000 and 170,000 years to fight its way through the dense inner layers. Once it reaches the surface, however, it crosses the distance to Earth in just 8 minutes.",
       },
       {
-        text: "Гравитация Солнца — единственный каркас, удерживающий вместе всю систему. На него приходится 99,86% массы Солнечной системы, поэтому все планеты, астероиды и кометы вращаются вокруг него, подчиняясь его искажению пространства-времени.",
+        text: "The Sun's gravity is the sole framework holding the entire system together. It accounts for 99.86% of the Solar System's mass, so every planet, asteroid, and comet orbits it, following its distortion of space-time.",
       },
     ],
   },
   mercury: {
-    label: "Меркурий",
+    label: "Mercury",
     sections: [
       {
-        text: "У Меркурия нет атмосферы, которая распределяла бы тепло по поверхности. Сторона, обращенная к Солнцу, пропекается до +430 °C — там плавится свинец. В это же время неосвещенное полушарие мгновенно сбрасывает все тепло в открытый космос, остывая до -180 °C.",
+        text: "Mercury has no atmosphere to distribute heat across its surface. The sunlit side bakes to +430 °C — hot enough to melt lead. At the same time, the dark hemisphere instantly radiates all its heat into space, cooling to -180 °C.",
       },
       {
-        text: "Ось вращения Меркурия почти перпендикулярна плоскости его орбиты — ее наклон составляет всего 0,03 градуса (у Земли — 23,5°). Из-за этого на Меркурии нет смены времен года, а лучи Солнца всегда скользят вдоль полюсов.",
+        text: "Mercury's rotation axis is nearly perpendicular to its orbital plane — tilted by just 0.03 degrees (Earth's is 23.5°). Because of this, Mercury has no seasons, and sunlight always glances along the poles.",
       },
       {
-        text: "Поскольку ось не наклонена, дно глубоких полярных кратеров никогда не видит солнечного света. Находясь в вечной тени при температуре близкой к абсолютному нулю, эти зоны работают как естественные холодильники, где миллиарды лет сохраняется водяной лед.",
+        text: "With no axial tilt, the floors of deep polar craters never see sunlight. Trapped in eternal shadow at temperatures near absolute zero, these regions act as natural freezers where water ice has been preserved for billions of years.",
       },
       {
-        text: "Из-за специфического вращения ночной период на Меркурии длится около 88 земных суток подряд. Поверхность успевает промерзнуть до основания за столь долгую ночь, делая темную сторону одной из самых холодных точек в системе.",
+        text: "Due to its unusual rotation, a single night on Mercury lasts about 88 Earth days in a row. The surface freezes solid over such a long night, making the dark side one of the coldest places in the system.",
       },
     ],
   },
   venus: {
-    label: "Венера",
+    label: "Venus",
     sections: [
       {
-        text: "Атмосфера Венеры на 96% состоит из углекислого газа, а облака — из серной кислоты. Плотная газовая оболочка удерживает тепло, разогревая поверхность до средних +465 °C. Это делает Венеру самой горячей планетой Солнечной системы, хотя она находится дальше от Солнца, чем Меркурий.",
+        text: "Venus's atmosphere is 96% carbon dioxide, and its clouds are made of sulfuric acid. The thick gas envelope traps heat, warming the surface to an average +465 °C. This makes Venus the hottest planet in the Solar System, even though it is farther from the Sun than Mercury.",
       },
       {
-        text: "У поверхности Венера обладает огромной плотностью атмосферы: давление там превышает земное в 92 раза. Находиться на ее поверхности — то же самое, что погрузиться в океан на глубину около 900 метров. Из-за этого углекислый газ у поверхности переходит в состояние сверхкритической fluid-жидкости.",
+        text: "At the surface, Venus has enormous atmospheric density: pressure there exceeds Earth's by 92 times. Standing on its surface is like diving to a depth of about 900 meters in the ocean. Because of this, carbon dioxide near the surface enters a supercritical fluid state.",
       },
       {
-        text: "Венера вращается вокруг своей оси в обратную сторону по сравнению с большинством планет (ретроградное вращение) — Солнце там восходит на западе и садится на востоке. Полный оборот вокруг оси занимает 243 земных дня, что длиннее ее года (225 дней).",
+        text: "Venus rotates in the opposite direction to most planets (retrograde rotation) — the Sun rises in the west and sets in the east. A full rotation takes 243 Earth days, longer than its year (225 days).",
       },
       {
-        text: "По размеру, массе и составу Венера — практически клон Земли. Моделирование показывает, что миллиарды лет назад на ней могли быть океаны жидкой воды и вполне умеренный климат, однако близость к Солнцу и запущенный парниковый эффект превратили ее в непригодную для жизни удушающую пустыню.",
+        text: "In size, mass, and composition, Venus is practically Earth's twin. Modeling suggests that billions of years ago it may have had liquid-water oceans and a moderate climate, but proximity to the Sun and a runaway greenhouse effect turned it into a suffocating, lifeless desert.",
       },
     ],
   },
   earth: {
-    label: "Земля",
+    label: "Earth",
     sections: [
       {
-        text: "Солнечный свет кажется белым, но состоит из всех цветов радуги. Когда он проходит сквозь атмосферу Земли, молекулы газов рассеивают короткие синие волны света намного сильнее, чем длинные красные. Этот процесс называется рассеянием Рэлея, и именно он окрашивает небо над нашей головой в голубой цвет.",
+        text: "Sunlight appears white but contains all the colors of the rainbow. As it passes through Earth's atmosphere, gas molecules scatter short blue wavelengths of light much more strongly than long red ones. This process is called Rayleigh scattering, and it is what paints the sky above us blue.",
       },
       {
-        text: "Земля постоянно крутится вокруг своей оси со скоростью около 1600 км/ч на экваторе, подставляя Солнцу то один бок, то другой. Мы не замечаем этого безумного вращения, потому что двигаемся вместе с атмосферой и поверхностью с той же скоростью — благодаря закону инерции, как пассажиры внутри плавно идущего поезда.",
+        text: "Earth spins constantly on its axis at about 1,600 km/h at the equator, presenting one side and then the other to the Sun. We do not notice this dizzying rotation because we move together with the atmosphere and surface at the same speed — thanks to inertia, like passengers on a smoothly moving train.",
       },
       {
-        text: "Любой предмет на Земле имеет вес, потому что огромная масса планеты притягивает его к своему центру. Согласно закону всемирного тяготения, чем больше масса объекта, тем сильнее его гравитация. Если бы Земля была вдвое массивнее, вы стали бы весить в два раза больше и прыгать в два раза ниже.",
+        text: "Every object on Earth has weight because the planet's enormous mass pulls it toward its center. According to the law of universal gravitation, the greater an object's mass, the stronger its gravity. If Earth were twice as massive, you would weigh twice as much and jump half as high.",
       },
       {
-        text: "Стрелка компаса всегда указывает на север, потому что Земля — это гигантский магнит. В её недрах бурлит жидкое раскаленное железо. Его движение создает электрические токи, которые формируют глобальное магнитное поле. Оно не только поворачивает стрелку компаса, но и защищает нас от опасной солнечной радиации.",
+        text: "A compass needle always points north because Earth is a giant magnet. Liquid, molten iron churns in its core. Its motion creates electric currents that form a global magnetic field. It not only turns the compass needle but also shields us from dangerous solar radiation.",
       },
       {
-        text: "Земля вращается не «прямо», а под наклоном в 23,5 градуса относительно своей орбиты. Когда северное полушарие наклоняется к Солнцу, оно получает больше прямого света и тепла — у нас наступает лето. В это же время южное полушарие отклонено от Солнца, свет скользит по нему по касательной, и там царит зима.",
+        text: "Earth does not spin \"straight up\" — it is tilted 23.5 degrees relative to its orbit. When the Northern Hemisphere leans toward the Sun, it receives more direct light and heat — summer arrives. At the same time, the Southern Hemisphere is angled away; sunlight glances off it, and winter reigns there.",
       },
       {
-        text: "Вечером Солнце опускается к горизонту, и его лучам приходится проходить гораздо более длинный путь сквозь толщу атмосферы, чем в полдень. Короткие синие волны успевают полностью рассеяться по пути и теряются, а длинные красные и оранжевые волны свободно проходят сквозь воздух, окрашивая закат в огненные тона.",
+        text: "In the evening the Sun sinks toward the horizon, and its rays must travel a much longer path through the atmosphere than at noon. Short blue waves scatter completely along the way and are lost, while long red and orange waves pass freely through the air, painting the sunset in fiery hues.",
       },
     ],
   },
   moon: {
-    label: "Луна",
+    label: "Moon",
     sections: [
       {
-        text: "Луна образовалась около 4,5 миллиардов лет назад, когда молодая Земля столкнулась с протопланетой Тейя размером с Марс. Выбитый в космос обломочный материал со временем сформировал Луну, что объясняет схожий химический состав пород обеих планет.",
+        text: "The Moon formed about 4.5 billion years ago when the young Earth collided with the Mars-sized protoplanet Theia. Debris ejected into space eventually coalesced into the Moon, explaining the similar chemical composition of rocks on both bodies.",
       },
       {
-        text: "Луна нетипично велика по сравнению со своей планетой — её диаметр составляет четверть от земного. Огромная масса Луны работает как стабилизатор: ее гравитация удерживает наклон земной оси в пределах 23,5 градусов, предотвращая хаотические климатические катастрофы.",
+        text: "The Moon is unusually large relative to its planet — its diameter is one-quarter of Earth's. The Moon's enormous mass acts as a stabilizer: its gravity keeps Earth's axial tilt within about 23.5 degrees, preventing chaotic climate catastrophes.",
       },
       {
-        text: "Приливные силы Земли давно замедлили вращение Луны, зафиксировав ее одной «приливной» стороной к нам. Одновременно с этим приливные волны передают энергии Луне, из-за чего она ежегодно отдаляется от Земли примерно на 3,8 сантиметра.",
+        text: "Earth's tidal forces long ago slowed the Moon's rotation, locking one \"tidal\" face toward us. At the same time, tidal bulges transfer energy to the Moon, causing it to drift away from Earth by about 3.8 centimeters each year.",
       },
     ],
   },
   mars: {
-    label: "Марс",
+    label: "Mars",
     sections: [
       {
-        text: "Марс имеет характерный красный цвет из-за оксида железа (ржавчины), покрывающего его поверхность. Из-за слабой гравитации и отсутствия защитного магнитного поля он утратил большую часть своей древней плотной атмосферы, превратившись в холодную разреженную пустыню.",
+        text: "Mars has a characteristic red color from iron oxide (rust) covering its surface. Weak gravity and the lack of a protective magnetic field caused it to lose most of its ancient dense atmosphere, turning it into a cold, thin desert.",
       },
       {
-        text: "На Марсе расположен потухший вулкан Олимп высотой 21,2 км — высочайшая гора в Солнечной системе. Здесь же находится система каньонов Долины Маринер, протянувшаяся на 4000 км, что почти в десять раз длиннее американского Большого Каньона.",
+        text: "Mars is home to the extinct volcano Olympus Mons, 21.2 km high — the tallest mountain in the Solar System. It also hosts Valles Marineris, a canyon system stretching 4,000 km, nearly ten times longer than the American Grand Canyon.",
       },
       {
-        text: "Данные марсоходов и орбитальных аппаратов подтверждают, что в прошлом на Марсе текли речные потоки и существовали глубокие озера. Вся эта вода сейчас заблокирована под поверхностью в виде вечной мерзлоты и в полярных ледяных шапках.",
+        text: "Data from rovers and orbiters confirm that rivers once flowed on Mars and deep lakes existed. All that water is now locked beneath the surface as permafrost and in polar ice caps.",
       },
       {
-        text: "Марс имеет два небольших спутника неправильной формы — Фобос и Деймос. Согласно основной гипотезе, это астероиды, гравитационно захваченные планетой из Пояса астероидов. При этом Фобос постепенно приближается к Марсу и со временем будет разорван его гравитацией.",
+        text: "Mars has two small, irregularly shaped moons — Phobos and Deimos. The leading hypothesis is that they are asteroids gravitationally captured from the Asteroid Belt. Phobos is gradually spiraling toward Mars and will eventually be torn apart by its gravity.",
       },
     ],
   },
   jupiter: {
-    label: "Юпитер",
+    label: "Jupiter",
     sections: [
       {
-        text: "Юпитер — самый массивный объект в Солнечной системе после Солнца (в 2,5 раза тяжелее всех остальных планет, вместе взятых). Его колоссальная гравитация работает как защитный щит, перехватывая и отклоняя опасные кометы и астероиды от внутренних планет.",
+        text: "Jupiter is the most massive object in the Solar System after the Sun (2.5 times heavier than all other planets combined). Its colossal gravity acts as a protective shield, intercepting and deflecting dangerous comets and asteroids away from the inner planets.",
       },
       {
-        text: "Под воздействием экстремального давления водород в недрах Юпитера сжимается в редкую фазу жидкого металлического водорода. Вращение этого проводящего слоя порождает невероятно мощное магнитное поле, превосходящее земное в тысячи раз.",
+        text: "Under extreme pressure, hydrogen in Jupiter's interior compresses into the rare phase of liquid metallic hydrogen. The rotation of this conducting layer generates an incredibly powerful magnetic field thousands of times stronger than Earth's.",
       },
       {
-        text: "В атмосфере Юпитера веками бушует Большое Красное Пятно — гигантский антициклон, размеры которого долгое время превышали диаметр Земли. Этот ураган питается внутренним теплом планеты, хотя за последние десятилетия заметно уменьшился в размерах.",
+        text: "Jupiter's atmosphere has hosted the Great Red Spot for centuries — a giant anticyclone that for a long time exceeded Earth's diameter. This storm is fueled by the planet's internal heat, though it has noticeably shrunk over recent decades.",
       },
       {
-        text: "Юпитер обладает обширной системой из более чем 90 спутников. Четыре крупнейших из них (Галилеевы луны) крайне разнообразны: вулканический Ио, ледяная Европа с подповерхностным океаном, а также гиганты Ганимед и Каллисто.",
+        text: "Jupiter has an extensive system of more than 90 moons. The four largest (the Galilean moons) are remarkably diverse: volcanic Io, icy Europa with a subsurface ocean, and the giants Ganymede and Callisto.",
       },
     ],
   },
   saturn: {
-    label: "Сатурн",
+    label: "Saturn",
     sections: [
       {
-        text: "Сатурн — самый малоплотный объект среди планет Солнечной системы (около 0,69 г/см³). Если бы существовал гигантский океан, Сатурн плавал бы на его поверхности, так как его средняя плотность ниже плотности жидкой воды.",
+        text: "Saturn is the least dense object among the Solar System's planets (about 0.69 g/cm³). If a giant ocean existed, Saturn would float on its surface, since its average density is lower than that of liquid water.",
       },
       {
-        text: "Знаменитые кольца Сатурна на 99% состоят из водяного льда с примесями пыли. Они представляют собой обломки древней ледяной луны или кометы, разорванной гравитацией планеты, и постепенно исчезают, выпадая в виде ледяного дождя.",
+        text: "Saturn's famous rings are 99% water ice with dust impurities. They are fragments of an ancient icy moon or comet torn apart by the planet's gravity, and they are slowly disappearing as they rain down as icy particles.",
       },
       {
-        text: "В северном полушарии Сатурна находится устойчивый гигантский шестиугольный вихрь — Гексагон. Каждая из сторон этого геометрически правильного атмосферного образования по длине превосходит диаметр Земли.",
+        text: "Saturn's northern hemisphere hosts a persistent giant hexagonal vortex — the Hexagon. Each side of this geometrically regular atmospheric feature is longer than Earth's diameter.",
       },
       {
-        text: "Сатурн обладает уникальными спутниками: Титан — единственная луна с плотной атмосферой и метановыми озерами, а на маленьком Энцеладе из подповерхностного океана через трещины в коре бьют водяные гейзеры.",
+        text: "Saturn has unique moons: Titan is the only moon with a dense atmosphere and methane lakes, while tiny Enceladus shoots water geysers from a subsurface ocean through cracks in its crust.",
       },
     ],
   },
   uranus: {
-    label: "Уран",
+    label: "Uranus",
     sections: [
       {
-        text: "Наклон оси вращения Урана составляет 98 градусов. Планета фактически катится по своей орбите «на боку», вероятно, в результате катаклизмического столкновения с крупным протопланетным телом размером с Землю на раннем этапе формирования.",
+        text: "Uranus's rotation axis is tilted 98 degrees. The planet effectively rolls along its orbit on its side, likely as a result of a catastrophic collision with an Earth-sized protoplanetary body early in its formation.",
       },
       {
-        text: "Уран имеет самую холодную атмосферу среди всех планет с минимумом в -224 °C. В отличие от других гигантов, его ядро выделяет крайне мало внутреннего тепла, поэтому динамика его атмосферы полностью зависит от слабого солнечного света.",
+        text: "Uranus has the coldest atmosphere of any planet, with a minimum of -224 °C. Unlike the other giants, its core releases very little internal heat, so its atmospheric dynamics depend entirely on weak sunlight.",
       },
       {
-        text: "Хотя кольца ассоциируются с Сатурном, у Урана тоже есть 13 известных колец. Однако они крайне темные, узкие и состоят из крупного валунного материала и пыли, из-за чего их открыли только в 1977 году.",
+        text: "Although rings are associated with Saturn, Uranus also has 13 known rings. However, they are extremely dark, narrow, and made of large boulder-like material and dust, which is why they were not discovered until 1977.",
       },
       {
-        text: "Недра Урана состоят преимущественно из плотного горячего «льда» — смеси воды, аммиака и метана под высоким давлением. Метан в верхних слоях атмосферы поглощает красный свет, придавая планете выраженный бирюзовый оттенок.",
+        text: "Uranus's interior consists mainly of dense, hot \"ice\" — a mixture of water, ammonia, and methane under high pressure. Methane in the upper atmosphere absorbs red light, giving the planet a distinct turquoise hue.",
       },
     ],
   },
   neptune: {
-    label: "Нептун",
+    label: "Neptune",
     sections: [
       {
-        text: "На Нептуне зафиксированы самые быстрые ветры в Солнечной системе, скорость которых достигает 2100 км/ч (почти скорость звука). Этот экстремальный метеорологический режим поддерживается мощным внутренним тепловым источником планеты.",
+        text: "Neptune records the fastest winds in the Solar System, reaching speeds of 2,100 km/h (nearly the speed of sound). This extreme weather is sustained by the planet's powerful internal heat source.",
       },
       {
-        text: "Крупнейший спутник Нептуна, Тритон, движется по ретроградной орбите (в сторону, противоположную вращению планеты). Это указывает на то, что Тритон изначально был карликовой планетой из пояса Койпера, захваченной гравитацией Нептуна.",
+        text: "Neptune's largest moon, Triton, moves in a retrograde orbit (opposite to the planet's rotation). This suggests Triton was originally a dwarf planet from the Kuiper Belt, captured by Neptune's gravity.",
       },
       {
-        text: "Нептун имеет насыщенный лазурный цвет, схожий с Ураном, но гораздо более яркий. Помимо метана, в его атмосфере присутствует неизвестный пока компонент, который усиливает синий спектр отраженного солнечного света.",
+        text: "Neptune has a rich azure color similar to Uranus but much brighter. In addition to methane, its atmosphere contains an as-yet-unknown component that enhances the blue spectrum of reflected sunlight.",
       },
       {
-        text: "В атмосфере Нептуна регулярно возникают и исчезают гигантские темные пятна — атмосферные штормы размером с Землю. В отличие от долгоживущего пятна Юпитера, ураганы Нептуна имеют меньший срок жизни и растворяются за несколько лет.",
+        text: "Giant dark spots regularly appear and vanish in Neptune's atmosphere — storms the size of Earth. Unlike Jupiter's long-lived spot, Neptune's hurricanes have shorter lifetimes and dissolve within a few years.",
       },
     ],
   },
   asteroidBelt: {
-    label: "Пояс астероидов",
+    label: "Asteroid Belt",
     sections: [
       {
-        text: "Пояс астероидов расположен между орбитами Марса и Юпитера. Мощная гравитация Юпитера постоянно создавала резонансные возмущения, не позволив этому строительному материалу на раннем этапе эволюции объединиться в единую полноценную планету.",
+        text: "The Asteroid Belt lies between the orbits of Mars and Jupiter. Jupiter's powerful gravity constantly created resonant perturbations that prevented this building material from ever coalescing into a single full-sized planet during the early evolution of the system.",
       },
       {
-        text: "Крупнейший объект пояса — карликовая планета Церера диаметром около 950 км, на которую приходится треть всей массы пояса. Под её скалистой корой содержатся огромные запасы водяного льда и соленых подповерхностных рассолов.",
+        text: "The belt's largest object is the dwarf planet Ceres, about 950 km in diameter, accounting for one-third of the belt's total mass. Beneath its rocky crust lie vast reserves of water ice and salty subsurface brines.",
       },
       {
-        text: "Вопреки стереотипам из фантастики, Пояс астероидов не является плотной каменной стеной. Среднее расстояние между объектами составляет сотни тысяч километров, поэтому космические корабли пересекают эту область без какого-либо риска столкновения.",
+        text: "Contrary to science-fiction stereotypes, the Asteroid Belt is not a dense wall of rock. The average distance between objects is hundreds of thousands of kilometers, so spacecraft cross this region with virtually no collision risk.",
       },
       {
-        text: "Астероиды пояса делятся на три основных класса: углеродные (C-тип), силикатные (S-тип) и металлические (M-тип). Последние состоят в основном из железа и никеля с высокой концентрацией драгоценных металлов, представляя потенциальный интерес для будущей добычи ресурсов.",
+        text: "Belt asteroids fall into three main classes: carbonaceous (C-type), silicate (S-type), and metallic (M-type). The last consist mainly of iron and nickel with high concentrations of precious metals, making them a potential target for future resource mining.",
       },
     ],
   },

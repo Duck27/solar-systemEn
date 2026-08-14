@@ -94,7 +94,7 @@ function renderCarousel(id) {
   dotsEl.innerHTML = info.sections
     .map(
       (_, i) =>
-        `<button type="button" class="planet-carousel__dot${i === 0 ? " is-active" : ""}" data-index="${i}" aria-label="Секция ${i + 1}"></button>`,
+        `<button type="button" class="planet-carousel__dot${i === 0 ? " is-active" : ""}" data-index="${i}" aria-label="Section ${i + 1}"></button>`,
     )
     .join("");
 

@@ -41,7 +41,7 @@ export function formatForHorizons(date) {
 }
 
 export function formatDisplayDate(date) {
-  return date.toLocaleString("ru-RU", {
+  return date.toLocaleString("en-US", {
     day: "numeric",
     month: "long",
     year: "numeric",
