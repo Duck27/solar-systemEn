@@ -91,7 +91,9 @@ function createPlanetRings(planetSize, config) {
 }
 
 function createBodyMaterial(data) {
-  const texture = data.mesh.texture ? getCachedTexture(data.mesh.texture) : null;
+  const texture = data.mesh.texture
+    ? getCachedTexture(data.mesh.texture)
+    : null;
   const fallback = data.mesh.fallbackColor ?? 0x888888;
 
   if (data.mesh.isSun) {
@@ -203,7 +205,6 @@ export function createPlanet(name, scene) {
         color: satellite.mesh.fallbackColor ?? 0x888888,
       });
       const satelliteMesh = new THREE.Mesh(geo, mat);
-
       const satPivot = new THREE.Object3D();
       spinPivot.add(satPivot);
 
@@ -249,7 +250,9 @@ export function updatePlanet(data, dt) {
       const sat = data.satellites[key];
       sat.orbit.angle += sat.orbit.speed * dt;
       applySatelliteTransform(sat);
-      sat.mesh.body.rotation.y += sat.mesh.rotationSpeed * dt;
+      if (!sat.mesh.tidallyLocked) {
+        sat.mesh.body.rotation.y += sat.mesh.rotationSpeed * dt;
+      }
     }
   }
 }

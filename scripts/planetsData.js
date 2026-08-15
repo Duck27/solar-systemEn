@@ -87,6 +87,7 @@ export const planetsData = {
         mesh: {
           size: 0.5,
           rotationSpeed: rotationSpeed(27.322),
+          tidallyLocked: true,
           texture: tex("img/moon.jpg"),
           fallbackColor: 0xaaaaaa,
           tiltDeg: 6.68,

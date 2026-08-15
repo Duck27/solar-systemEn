@@ -30,7 +30,8 @@ function collectClickableTargets() {
   return targets;
 }
 
-const UI_SELECTORS = "#planet-panel, #speed-menu, .planet-panel, .speed-menu";
+const UI_SELECTORS =
+  "#planet-panel, #speed-menu, #object-menu, .planet-panel, .speed-menu, .object-menu";
 
 function isUiTarget(target) {
   return target instanceof Element && target.closest(UI_SELECTORS);
@@ -42,13 +43,13 @@ function castRay(event, camera) {
   raycaster.setFromCamera(mouse, camera);
 }
 
-export function checkHover(event, camera) {
+export function checkHover(event, camera, extraMeshes = []) {
   if (isUiTarget(event.target)) return false;
 
   castRay(event, camera);
 
   const targets = collectClickableTargets();
-  const meshes = targets.map((t) => t.mesh);
+  const meshes = [...targets.map((t) => t.mesh), ...extraMeshes];
   const intersects = raycaster.intersectObjects(meshes);
 
   return intersects.length > 0;
@@ -60,7 +61,7 @@ export function checkIntersection(
   settings,
   onTargetClick,
   onEmptyClick,
-  extraTargets = []
+  extraTargets = [],
 ) {
   if (isUiTarget(event.target)) return;
 

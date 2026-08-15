@@ -7,6 +7,7 @@ import {
   overviewMaxDistance,
 } from "./scripts/settings.js";
 import { initSpeedMenu } from "./scripts/ui/speedMenu.js";
+import { initObjectMenu } from "./scripts/ui/objectMenu.js";
 import { initRenderer, initComposer } from "./scripts/core/renderer.js";
 import {
   createPlanet,
@@ -89,6 +90,27 @@ async function bootstrap() {
 
   initPlanetPanel();
   initSpeedMenu();
+  initObjectMenu((id) => {
+    if (id === "asteroidBelt") {
+      moveToBelt(camera, controls);
+      showPlanetPanel(id);
+      return;
+    }
+
+    let data = planetsData[id];
+    if (!data) {
+      for (const planet of Object.values(planetsData)) {
+        data = Object.values(planet.satellites ?? {}).find(
+          (satellite) => satellite.infoId === id,
+        );
+        if (data) break;
+      }
+    }
+
+    if (!data) return;
+    moveToPlanet(data, camera, controls);
+    showPlanetPanel(id);
+  });
 
   initSimulationTime(new Date());
   initSimulationClock();
@@ -115,7 +137,7 @@ async function bootstrap() {
       },
       [
         {
-          mesh: asteroidBelt,
+          mesh: asteroidBelt.hitArea,
           onHit: () => {
             moveToBelt(camera, controls);
             showPlanetPanel("asteroidBelt");
@@ -132,7 +154,7 @@ async function bootstrap() {
       return;
     }
 
-    const hovered = checkHover(event, camera);
+    const hovered = checkHover(event, camera, [asteroidBelt.hitArea]);
     settings.hoverPaused = hovered;
     document.body.style.cursor = hovered ? "pointer" : "";
   });
@@ -154,7 +176,7 @@ async function bootstrap() {
       layer.material.uniforms.uTime.value = elapsedTime;
     });
 
-    asteroidBelt.rotation.y += orbitSpeed(4.6) * dt;
+    asteroidBelt.mesh.rotation.y += orbitSpeed(4.6) * dt;
 
     for (const name in planetsData) {
       if (planetsData[name].mesh?.body) {

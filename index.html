@@ -9,6 +9,33 @@
   <body>
     <div id="loading-screen" class="loading-screen">Loading…</div>
 
+    <nav id="object-menu" class="object-menu" aria-label="Interactive objects">
+      <button
+        id="object-menu-toggle"
+        class="object-menu__toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="object-menu-list"
+      >
+        <span class="object-menu__orbit" aria-hidden="true"></span>
+        <span>Explore</span>
+        <span class="object-menu__chevron" aria-hidden="true">⌄</span>
+      </button>
+      <div id="object-menu-list" class="object-menu__list" hidden>
+        <button type="button" data-object="sun" style="--object-color: #ffbd38">Sun</button>
+        <button type="button" data-object="mercury" style="--object-color: #a8a8a8">Mercury</button>
+        <button type="button" data-object="venus" style="--object-color: #d5b85b">Venus</button>
+        <button type="button" data-object="earth" style="--object-color: #4ea5ff">Earth</button>
+        <button type="button" data-object="moon" class="object-menu__satellite" style="--object-color: #d8d8d8">Moon</button>
+        <button type="button" data-object="mars" style="--object-color: #d66b4a">Mars</button>
+        <button type="button" data-object="asteroidBelt" class="object-menu__belt" style="--object-color: #9b8a71">Asteroid Belt</button>
+        <button type="button" data-object="jupiter" style="--object-color: #d7a06f">Jupiter</button>
+        <button type="button" data-object="saturn" style="--object-color: #e0c786">Saturn</button>
+        <button type="button" data-object="uranus" style="--object-color: #8bd8e8">Uranus</button>
+        <button type="button" data-object="neptune" style="--object-color: #497dde">Neptune</button>
+      </div>
+    </nav>
+
     <aside id="planet-panel" class="planet-panel">
       <h2 id="planet-name" class="planet-panel__name"></h2>
 
