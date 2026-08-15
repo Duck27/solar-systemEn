@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solar System</title>
+    <script type="module" crossorigin src="./assets/index-DviLUOiB.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CjmH1yNx.css">
+  </head>
+  <body>
+    <div id="loading-screen" class="loading-screen">Loading…</div>
+
+    <nav id="object-menu" class="object-menu" aria-label="Interactive objects">
+      <button
+        id="object-menu-toggle"
+        class="object-menu__toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="object-menu-list"
+      >
+        <span class="object-menu__orbit" aria-hidden="true"></span>
+        <span>Explore</span>
+        <span class="object-menu__chevron" aria-hidden="true">⌄</span>
+      </button>
+      <div id="object-menu-list" class="object-menu__list" hidden>
+        <button type="button" data-object="sun" style="--object-color: #ffbd38">Sun</button>
+        <button type="button" data-object="mercury" style="--object-color: #a8a8a8">Mercury</button>
+        <button type="button" data-object="venus" style="--object-color: #d5b85b">Venus</button>
+        <button type="button" data-object="earth" style="--object-color: #4ea5ff">Earth</button>
+        <button type="button" data-object="moon" class="object-menu__satellite" style="--object-color: #d8d8d8">Moon</button>
+        <button type="button" data-object="mars" style="--object-color: #d66b4a">Mars</button>
+        <button type="button" data-object="asteroidBelt" class="object-menu__belt" style="--object-color: #9b8a71">Asteroid Belt</button>
+        <button type="button" data-object="jupiter" style="--object-color: #d7a06f">Jupiter</button>
+        <button type="button" data-object="saturn" style="--object-color: #e0c786">Saturn</button>
+        <button type="button" data-object="uranus" style="--object-color: #8bd8e8">Uranus</button>
+        <button type="button" data-object="neptune" style="--object-color: #497dde">Neptune</button>
+      </div>
+    </nav>
+
+    <aside id="planet-panel" class="planet-panel">
+      <h2 id="planet-name" class="planet-panel__name"></h2>
+
+      <div class="planet-carousel">
+        <div class="planet-carousel__viewport">
+          <div class="planet-carousel__track" id="carousel-track"></div>
+        </div>
+
+        <nav class="planet-carousel__nav" aria-label="Section navigation">
+          <button
+            type="button"
+            class="planet-carousel__btn"
+            id="carousel-prev"
+            aria-label="Previous section"
+          >
+            ‹
+          </button>
+          <div class="planet-carousel__dots" id="carousel-dots"></div>
+          <button
+            type="button"
+            class="planet-carousel__btn"
+            id="carousel-next"
+            aria-label="Next section"
+          >
+            ›
+          </button>
+        </nav>
+      </div>
+    </aside>
+
+    <div id="simulation-clock-wrap" class="simulation-clock-wrap">
+      <time id="simulation-clock" class="simulation-clock" datetime=""></time>
+    </div>
+
+    <nav id="speed-menu" class="speed-menu" aria-label="Simulation speed">
+      <button type="button" class="speed-menu__btn" data-speed-mode="realtime">
+        Real time
+      </button>
+      <button
+        type="button"
+        class="speed-menu__btn is-active"
+        data-speed-mode="x1000"
+      >
+        ×1000
+      </button>
+      <button type="button" class="speed-menu__btn" data-speed-mode="x100000">
+        ×100 000
+      </button>
+
+      <div class="speed-menu__divider" aria-hidden="true"></div>
+
+      <div class="speed-menu__custom">
+        <span class="speed-menu__prefix" aria-hidden="true">×</span>
+        <input
+          type="number"
+          id="speed-custom"
+          class="speed-menu__input"
+          inputmode="decimal"
+          step="any"
+          aria-label="Custom speed"
+          title="A negative value moves time backward"
+        />
+      </div>
+      <button
+        type="button"
+        id="speed-reverse"
+        class="speed-menu__reverse"
+        aria-label="Reverse time direction"
+        title="Reverse direction"
+      >
+        ↺
+      </button>
+    </nav>
+
+  </body>
+</html>
